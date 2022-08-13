@@ -31,7 +31,7 @@ token_subject = token_payload.get('sub')
 # >> vremes
 print(token_subject)
 
-# Is the this token expired?
+# Is this token expired?
 token_is_expired = token.is_expired()
 
 # >> False
