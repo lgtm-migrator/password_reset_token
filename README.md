@@ -39,3 +39,6 @@ print(token_is_expired)
 ```
 
 You can view the JWT at [jwt.io](https://jwt.io/#debugger-io?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2cmVtZXMiLCJleHAiOjE2NjAzOTY3MjR9.F8bHjTCnw46SoCU9LzqCIpmW9tv4Uhtp5NAZUKIotIM) debugger.
+
+# Demo application 
+I wrote a demo application for this module using Flask, check the [repository](https://github.com/vremes/password_reset_token_demo).
