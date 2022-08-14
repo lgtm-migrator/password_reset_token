@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="password_reset_token",
-    version="0.0.1",
+    version="0.0.3",
     author="Valtteri Remes",
     description="Simple and easy to use Python 3 module to generate password reset tokens, based on JWT.",
     long_description=long_description,
@@ -19,5 +19,5 @@ setuptools.setup(
     py_modules=["password_reset_token"],
     install_requires=[
         "PyJWT==2.4.0",
-    ]
+    ],
 )
