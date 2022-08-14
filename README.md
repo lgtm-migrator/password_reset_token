@@ -59,5 +59,23 @@ print(token_is_expired)
 
 You can view the JWT at [jwt.io](https://jwt.io/#debugger-io?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2cmVtZXMiLCJleHAiOjE2NjAzOTY3MjR9.F8bHjTCnw46SoCU9LzqCIpmW9tv4Uhtp5NAZUKIotIM) debugger.
 
+### Additional claims
+
+Generated tokens will expire in **one hour** by default, you can override the default expiration time by passing `exp` to `additional_claims` on `generate_new_token` method.
+
+```py
+from time import time
+from password_reset_token import PasswordResetTokenGenerator
+
+SECRET_KEY = 'super-secret-string'
+
+token_generator = PasswordResetTokenGenerator(SECRET_KEY)
+
+# This token will expire in 10 minutes
+token = token_generator.generate_new_token('vremes', {
+    "exp": int(time()) + 600
+})
+```
+
 # Demo application 
 I wrote a demo application for this module using Flask, check the [repository](https://github.com/vremes/password_reset_token_demo).
