@@ -15,9 +15,7 @@ SECRET_KEY = 'super-secret-string'
 token_generator = PasswordResetTokenGenerator(SECRET_KEY)
 
 # Generate PasswordResetToken instance with custom payload.
-token = token_generator.generate_new_token({
-    "sub": "vremes"
-})
+token = token_generator.generate_new_token('vremes')
 
 # >> PasswordResetToken(json_web_token='eyJ0eXAiOiJKV1QiLCJhbGci...', secret='super-secret-string', algorithm='HS256')
 print(token)
@@ -29,10 +27,10 @@ token_payload = token.get_payload()
 print(token_payload)
 
 # Who does this token belong to?
-token_subject = token_payload.get('sub')
+user_identifier = token_payload.get_user_identifier()
 
 # >> vremes
-print(token_subject)
+print(user_identifier)
 
 # Is this token expired?
 token_is_expired = token.is_expired()
@@ -47,9 +45,7 @@ from password_reset_token import PasswordResetToken
 
 SECRET_KEY = 'super-secret-string'
 
-json_web_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2cmVtZXMiLCJleHAiOjE2NjAzOTY3MjR9.F8bHjTCnw46SoCU9LzqCIpmW9tv4Uhtp5NAZUKIotIM'
-
-token = PasswordResetToken(json_web_token, SECRET_KEY)
+token = PasswordResetToken('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2cmVtZXMiLCJleHAiOjE2NjAzOTY3MjR9.F8bHjTCnw46SoCU9LzqCIpmW9tv4Uhtp5NAZUKIotIM', SECRET_KEY)
 
 # >> PasswordResetToken(json_web_token='eyJ0eXAiOiJKV1QiLCJhbGci...', secret='super-secret-string', algorithm='HS256')
 print(token)
