@@ -15,7 +15,7 @@ class PasswordResetToken:
     def get_payload(self) -> dict:
         """Returns the payload for this token as a dict."""
         try:
-            payload = jwt.decode(self.json_web_token, self.secret, self.algorithm)
+            payload = self.__decode_jwt()
         except Exception:
             payload = {}
         finally:
@@ -24,10 +24,15 @@ class PasswordResetToken:
     def is_expired(self) -> bool:
         """Checks if this token is expired, you should stop processing the token immediately if this method returns True."""
         try:
-            jwt.decode(self.json_web_token, self.secret, self.algorithm)
+            self.__decode_jwt()
             return False
         except (jwt.exceptions.ExpiredSignatureError, jwt.exceptions.DecodeError):
             return True
+
+    def __decode_jwt(self) -> dict:
+        return jwt.decode(self.json_web_token, self.secret, self.algorithm, options={
+            "require": ["exp"]
+        })
 
 class PasswordResetTokenGenerator:
     """Class which generates PasswordResetToken instances for you."""
