@@ -77,5 +77,27 @@ token = token_generator.generate_new_token('vremes', {
 })
 ```
 
+### Secret keys
+
+You should refer to Python [secrets](https://docs.python.org/3/library/secrets.html) module for secret keys.
+
+Command to generate a secret key:
+```sh
+python -c "import secrets;print(secrets.token_urlsafe(64))"
+```
+
+You should store that secret key into environment variable in your operating system, for example `PASSWORD_RESET_TOKEN_SECRET`.
+
+Then you can access it in your code using `os.getenv` and pass it to `PasswordResetTokenGenerator` constructor.
+
+```py
+from os import getenv
+from password_reset_token import PasswordResetTokenGenerator
+
+PASSWORD_RESET_TOKEN_SECRET = getenv('PASSWORD_RESET_TOKEN_SECRET')
+
+token_generator = PasswordResetTokenGenerator(PASSWORD_RESET_TOKEN_SECRET)
+```
+
 # Demo application 
 I wrote a demo application for this module using Flask, check the [repository](https://github.com/vremes/password_reset_token_demo).
