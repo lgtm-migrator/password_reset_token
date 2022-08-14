@@ -1,5 +1,8 @@
 # password_reset_token
 
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/vremes/password_reset_token.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/vremes/password_reset_token/context:python)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/vremes/password_reset_token.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/vremes/password_reset_token/alerts/)
+
 Simple and easy to use Python 3 module to generate password reset tokens, based on JWT ([PyJWT](https://github.com/jpadilla/pyjwt)).
 
 # Usage
