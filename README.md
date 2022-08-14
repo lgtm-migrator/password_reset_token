@@ -4,7 +4,10 @@ Simple and easy to use Python 3 module to generate password reset tokens, based 
 
 # Usage
 
+### Generating new tokens
 ```py
+from password_reset_token import PasswordResetTokenGenerator
+
 # Secret key for tokens, store it somewhere safe, for example environment variable.
 SECRET_KEY = 'super-secret-string'
 
@@ -16,13 +19,13 @@ token = token_generator.generate_new_token({
     "sub": "vremes"
 })
 
-# >> PasswordResetToken(json_web_token='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2cmVtZXMiLCJleHAiOjE2NjAzOTY3MjR9.F8bHjTCnw46SoCU9LzqCIpmW9tv4Uhtp5NAZUKIotIM', secret='super-secret-string', algorithm='HS256')
+# >> PasswordResetToken(json_web_token='eyJ0eXAiOiJKV1QiLCJhbGci...', secret='super-secret-string', algorithm='HS256')
 print(token)
 
 # Spit out the payload 
 token_payload = token.get_payload()
 
-# >> {'sub': 'vremes', 'exp': 1660396750}
+# >> {'sub': 'vremes', 'exp': 1660396724}
 print(token_payload)
 
 # Who does this token belong to?
@@ -35,6 +38,26 @@ print(token_subject)
 token_is_expired = token.is_expired()
 
 # >> False
+print(token_is_expired)
+```
+
+### Using existing tokens
+```py
+from password_reset_token import PasswordResetToken
+
+SECRET_KEY = 'super-secret-string'
+
+json_web_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ2cmVtZXMiLCJleHAiOjE2NjAzOTY3MjR9.F8bHjTCnw46SoCU9LzqCIpmW9tv4Uhtp5NAZUKIotIM'
+
+token = PasswordResetToken(json_web_token, SECRET_KEY)
+
+# >> PasswordResetToken(json_web_token='eyJ0eXAiOiJKV1QiLCJhbGci...', secret='super-secret-string', algorithm='HS256')
+print(token)
+
+# Is this token expired?
+token_is_expired = token.is_expired()
+
+# >> True
 print(token_is_expired)
 ```
 
