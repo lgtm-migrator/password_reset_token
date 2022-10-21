@@ -18,7 +18,7 @@ setuptools.setup(
     python_requires='>=3.6',
     py_modules=["password_reset_token"],
     install_requires=[
-        "PyJWT==2.4.0",
+        "PyJWT==2.6.0",
     ],
     url="https://github.com/vremes/password_reset_token",
 )
